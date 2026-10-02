@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Just For You 💗</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #08030d;
+    color: white;
+    overflow: hidden;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 30%, #24102f 0%, #08030d 55%);
+    z-index: -2;
+}
+
+.glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.35;
+}
+
+.glow.one {
+    background: #ff2f92;
+    top: -100px;
+    left: -100px;
+}
+
+.glow.two {
+    background: #7b2cff;
+    bottom: -100px;
+    right: -100px;
+}
+
+/* FLOATING HEARTS */
+
+.heart {
+    position: absolute;
+    color: #ff5ca8;
+    opacity: 0.35;
+    animation: floatHeart 8s linear infinite;
+}
+
+.heart:nth-child(1) {
+    left: 10%;
+    bottom: -30px;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    left: 30%;
+    bottom: -40px;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(3) {
+    left: 55%;
+    bottom: -30px;
+    animation-delay: 4s;
+}
+
+.heart:nth-child(4) {
+    left: 75%;
+    bottom: -40px;
+    animation-delay: 1s;
+}
+
+.heart:nth-child(5) {
+    left: 90%;
+    bottom: -30px;
+    animation-delay: 3s;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) scale(0.7);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* SCREENS */
+
+.screen {
+    position: fixed;
+    inset: 0;
+    padding: 30px 20px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BUTTON */
+
+.main-btn {
+    border: none;
+    outline: none;
+    padding: 15px 28px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff4fa3, #9b4dff);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 35px rgba(255, 50, 150, 0.3);
+    transition: 0.3s;
+    margin-top: 25px;
+}
+
+.main-btn:hover {
+    transform: translateY(-3px);
+}
+
+.main-btn:active {
+    transform: scale(0.96);
+}
+
+/* SCREEN 1 */
+
+.cute-face {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ff9acb, #ff4f9a);
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 0 50px rgba(255, 80, 170, 0.4);
+}
+
+.eye {
+    position: absolute;
+    width: 12px;
+    height: 20px;
+    background: #241026;
+    border-radius: 50%;
+    top: 45px;
+}
+
+.eye.left {
+    left: 38px;
+}
+
+.eye.right {
+    right: 38px;
+}
+
+.mouth {
+    position: absolute;
+    width: 35px;
+    height: 18px;
+    border-bottom: 4px solid #241026;
+    border-radius: 50%;
+    left: 48px;
+    top: 72px;
+}
+
+.screen-title {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.screen-subtitle {
+    color: #cdbbd5;
+    font-size: 16px;
+}
+
+/* SCREEN 2 */
+
+.progress-title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.progress-subtitle {
+    color: #bda9c8;
+    margin-bottom: 30px;
+}
+
+.progress-box {
+    width: min(420px, 90%);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background: #211627;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #ff4f9c, #a84dff);
+    transition: width 0.1s linear;
+}
+
+.percent {
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.progress-message {
+    color: #d6c5db;
+    margin-top: 10px;
+    min-height: 24px;
+}
+
+.warning {
+    display: none;
+    margin-top: 25px;
+    max-width: 420px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 70, 130, 0.1);
+    border: 1px solid rgba(255, 100, 170, 0.3);
+}
+
+.warning h3 {
+    margin-bottom: 10px;
+}
+
+.warning p {
+    color: #e1d2e5;
+    line-height: 1.6;
+}
+
+/* SCREEN 3 */
+
+.just-badge {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #ff78b6;
+    margin-bottom: 15px;
+}
+
+.just-title {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.just-description {
+    color: #c5b3cc;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.options {
+    width: min(500px, 100%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.option {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option:hover {
+    transform: translateY(-3px);
+    background: rgba(255,80,160,0.1);
+}
+
+.option-icon {
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.option-text {
+    font-size: 14px;
+}
+
+.response-box {
+    display: none;
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.06);
+    color: #f0dfea;
+    max-width: 450px;
+    line-height: 1.5;
+}
+
+.see-more {
+    display: none;
+}
+
+/* STORY SCREENS */
+
+.story-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #ff78b6;
+    margin-bottom: 20px;
+}
+
+.story-icon {
+    font-size: 55px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px rgba(255,100,170,0.4));
+}
+
+.story-title {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.story-text {
+    max-width: 600px;
+    color: #e2d4e5;
+    font-size: 18px;
+    line-height: 1.9;
+}
+
+.story-text .quote {
+    color: #ffb2d5;
+    font-style: italic;
+}
+
+.story-card {
+    max-width: 620px;
+    width: 100%;
+    padding: 30px 25px;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* FINAL */
+
+.final-heart {
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+.final-title {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.final-text {
+    max-width: 600px;
+    color: #e2d4e5;
+    line-height: 1.9;
+    font-size: 18px;
+}
+
+.final-highlight {
+    color: #ff9dcc;
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding: 25px 18px;
+    }
+
+    .screen-title {
+        font-size: 34px;
+    }
+
+    .progress-title {
+        font-size: 27px;
+    }
+
+    .just-title {
+        font-size: 32px;
+    }
+
+    .options {
+        gap: 10px;
+    }
+
+    .option {
+        padding: 14px 8px;
+    }
+
+    .story-title,
+    .final-title {
+        font-size: 29px;
+    }
+
+    .story-text,
+    .final-text {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .story-card {
+        padding: 25px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+
+<div class="background">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+</div>
+
+
+<!-- SCREEN 1 -->
+
+<div class="screen active" id="screen1">
+
+    <div class="cute-face">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="mouth"></div>
+    </div>
+
+    <h1 class="screen-title">
+        Hey Beautiful
+    </h1>
+
+    <p class="screen-subtitle">
+        Do you even know how cute you are?
+    </p>
+
+    <button class="main-btn" onclick="openHeart()">
+        Open My Heart ♥
+    </button>
+
+</div>
+
+
+<!-- SCREEN 2 -->
+
+<div class="screen" id="screen2">
+
+    <h1 class="progress-title">
+        Measuring your cuteness...
+    </h1>
+
+    <p class="progress-subtitle">
+        Please wait, this may take a moment 💗
+    </p>
+
+    <div class="progress-box">
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="percent" id="percent">
+            0%
+        </div>
+
+        <div class="progress-message" id="progressMessage">
+            Starting...
+        </div>
+
+    </div>
+
+    <div class="warning" id="warning">
+
+        <h3>⚠️ WARNING</h3>
+
+        <p>
+            You are too cute to handle. 💗
+            <br>
+            My heart might fall for you... 😭✨
+        </p>
+
+    </div>
+
+    <button
+        class="main-btn"
+        id="continueBtn"
+        style="display:none;"
+        onclick="goToJustForYou()"
+    >
+        Continue →
+    </button>
+
+</div>
+
+
+<!-- SCREEN 3 -->
+
+<div class="screen" id="screen3">
+
+    <div class="just-badge">
+        JUST FOR YOU
+    </div>
+
+    <h1 class="just-title">
+        A little something...
+    </h1>
+
+    <p class="just-description">
+        Choose anything you want and see what happens. ✨
+    </p>
+
+    <div class="options">
+
+        <div class="option" onclick="selectOption(this, 'smile')">
+            <div class="option-icon">😊</div>
+            <div class="option-text">Smile</div>
+        </div>
+
+        <div class="option" onclick="selectOption(this, 'secret')">
+            <div class="option-icon">🔐</div>
+            <div class="option-text">Secret</div>
+        </div>
+
+        <div class="option" onclick="selectOption(this, 'magic')">
+            <div class="option-icon">✨</div>
+            <div class="option-text">Magic</div>
+        </div>
+
+        <div class="option" onclick="selectOption(this, 'cute')">
+            <div class="option-icon">💗</div>
+            <div class="option-text">Cute</div>
+        </div>
+
+        <div class="option" onclick="selectOption(this, 'mood')">
+            <div class="option-icon">🌙</div>
+            <div class="option-text">Mood</div>
+        </div>
+
+        <div class="option" onclick="selectOption(this, 'surprise')">
+            <div class="option-icon">🎁</div>
+            <div class="option-text">Surprise</div>
+        </div>
+
+    </div>
+
+    <div class="response-box" id="responseBox"></div>
+
+    <button
+        class="main-btn see-more"
+        id="seeMoreBtn"
+        onclick="startStory()"
+    >
+        See More →
+    </button>
+
+</div>
+
+
+<!-- STORY 1 -->
+
+<div class="screen" id="story1">
+
+    <div class="story-icon">🌹</div>
+
+    <div class="story-label">
+        A LITTLE STORY
+    </div>
+
+    <div class="story-card">
+
+        <h1 class="story-title">
+            Tumhari tarif me kya kahu...
+        </h1>
+
+        <p class="story-text">
+            Aao ek kahani sunata hu...!! 💗
+        </p>
+
+    </div>
+
+    <button class="main-btn" onclick="nextStory('story1','story2')">
+        Aage padho →
+    </button>
+
+</div>
+
+
+<!-- STORY 2 -->
+
+<div class="screen" id="story2">
+
+    <div class="story-icon">🌹</div>
+
+    <div class="story-label">
+        THE STORY
+    </div>
+
+    <div class="story-card">
+
+        <p class="story-text">
+            Ek din main gulab todne laga...
+            <br><br>
+
+            Toh maine gulab se pucha,
+            <br>
+
+            <span class="quote">
+                “Kya main gulab tod lu?”
+            </span>
+        </p>
+
+    </div>
+
+    <button class="main-btn" onclick="nextStory('story2','story3')">
+        Aage padho →
+    </button>
+
+</div>
+
+
+<!-- STORY 3 -->
+
+<div class="screen" id="story3">
+
+    <div class="story-icon">🌹</div>
+
+    <div class="story-label">
+        GULAB KA JAWAB
+    </div>
+
+    <div class="story-card">
+
+        <p class="story-text">
+
+            Gulab ne kaha,
+            <br>
+
+            <span class="quote">
+                “Kyu, kis liye?”
+            </span>
+
+            <br><br>
+
+            Maine kaha,
+            <br>
+
+            <span class="quote">
+                “Kisi ladki ko dena hai.”
+            </span>
+
+        </p>
+
+    </div>
+
+    <button class="main-btn" onclick="nextStory('story3','story4')">
+        Aage padho →
+    </button>
+
+</div>
+
+
+<!-- STORY 4 -->
+
+<div class="screen" id="story4">
+
+    <div class="story-icon">🌹</div>
+
+    <div class="story-label">
+        EK SHART
+    </div>
+
+    <div class="story-card">
+
+        <p class="story-text">
+
+            Usne kaha,
+            <br>
+
+            <span class="quote">
+                “Thik hai...”
+            </span>
+
+            <br><br>
+
+            “Magar dene se pehle,
+            <br>
+            mujhe us ladki se pehle mila dena.”
+
+        </p>
+
+    </div>
+
+    <button class="main-btn" onclick="nextStory('story4','story5')">
+        Aage padho →
+    </button>
+
+</div>
+
+
+<!-- STORY 5 -->
+
+<div class="screen" id="story5">
+
+    <div class="story-icon">🌹</div>
+
+    <div class="story-label">
+        THEN...
+    </div>
+
+    <div class="story-card">
+
+        <p class="story-text">
+
+            Maine wada kiya aur gulab todkar
+            <br>
+            usko dene chala gaya...
+
+            <br><br>
+
+            Phir maine gulab se kaha,
+            <br>
+
+            <span class="quote">
+                “Dekhiye janab,
+                <br>
+                woh rahi saamne ladki.”
+            </span>
+
+        </p>
+
+    </div>
+
+    <button class="main-btn" onclick="nextStory('story5','story6')">
+        Aage padho →
+    </button>
+
+</div>
+
+
+<!-- STORY 6 -->
+
+<div class="screen" id="story6">
+
+    <div class="story-icon">🥀</div>
+
+    <div class="story-label">
+        BUT THEN...
+    </div>
+
+    <div class="story-card">
+
+        <p class="story-text">
+
+            Gulab ne kaha,
+            <br>
+
+            <span class="quote">
+                “Mujhe usko mat dena...
+                <br>
+                baaki kisi ko de dena.”
+            </span>
+
+        </p>
+
+    </div>
+
+    <button class="main-btn" onclick="nextStory('story6','story7')">
+        Aage padho →
+    </button>
+
+</div>
+
+
+<!-- STORY 7 -->
+
+<div class="screen" id="story7">
+
+    <div class="story-icon">💭</div>
+
+    <div class="story-label">
+        THE QUESTION
+    </div>
+
+    <div class="story-card">
+
+        <p class="story-text">
+
+            Maine gulab se pucha,
+
+            <br><br>
+
+            <span class="quote">
+                “Aisa kyu?”
+            </span>
+
+        </p>
+
+    </div>
+
+    <button class="main-btn" onclick="nextStory('story7','story8')">
+        Aage padho →
+    </button>
+
+</div>
+
+
+<!-- STORY 8 / ENDING -->
+
+<div class="screen" id="story8">
+
+    <div class="final-heart">
+        🌹
+    </div>
+
+    <div class="story-label">
+        GULAB NE KAHA...
+    </div>
+
+    <div class="story-card">
+
+        <p class="story-text">
+
+            <span class="quote">
+                “Khubsurat hu...
+                <br>
+                magar usse zyada nahi.”
+            </span>
+
+        </p>
+
+        <div class="final-highlight">
+            💗
+        </div>
+
+    </div>
+
+    <button class="main-btn" onclick="restartExperience()">
+        Start Again ↻
+    </button>
+
+</div>
+
+
+<script>
+
+/* SCREEN CHANGE */
+
+function changeScreen(currentId, nextId) {
+
+    document.getElementById(currentId).classList.remove("active");
+
+    document.getElementById(nextId).classList.add("active");
+
+}
+
+
+/* SCREEN 1 → SCREEN 2 */
+
+function openHeart() {
+
+    changeScreen("screen1", "screen2");
+
+    startProgress();
+
+}
+
+
+/* PROGRESS */
+
+function startProgress() {
+
+    let progress = 0;
+
+    const fill = document.getElementById("progressFill");
+    const percent = document.getElementById("percent");
+    const message = document.getElementById("progressMessage");
+    const warning = document.getElementById("warning");
+    const continueBtn = document.getElementById("continueBtn");
+
+    const messages = [
+        "Checking smile...",
+        "Checking eyes...",
+        "Checking cuteness...",
+        "This is getting serious...",
+        "Almost done..."
+    ];
+
+    const interval = setInterval(() => {
+
+        progress++;
+
+        fill.style.width = progress + "%";
+        percent.innerText = progress + "%";
+
+        if (progress <= 100) {
+
+            let index = Math.floor(progress / 20);
+
+            if (index > 4) {
+                index = 4;
+            }
+
+            message.innerText = messages[index];
+
+        }
+
+        if (progress >= 100) {
+
+            clearInterval(interval);
+
+            setTimeout(() => {
+
+                percent.innerText = "120%";
+                fill.style.width = "100%";
+
+                message.innerText =
+                    "Okay... this is definitely too much. 😭";
+
+                warning.style.display = "block";
+
+                continueBtn.style.display = "inline-block";
+
+            }, 500);
+
+        }
+
+    }, 35);
+
+}
+
+
+/* SCREEN 2 → SCREEN 3 */
+
+function goToJustForYou() {
+
+    changeScreen("screen2", "screen3");
+
+}
+
+
+/* SCREEN 3 OPTIONS */
+
+const responses = {
+
+    smile: "That smile probably makes everything better. 😊",
+
+    secret: "Psst... you are more special than you think. 🔐💗",
+
+    magic: "Maybe meeting you was a little bit of magic. ✨",
+
+    cute: "Okay, I think we already proved this one. 💗",
+
+    mood: "Whatever your mood is, I hope this makes it a little better. 🌙",
+
+    surprise: "There is still a little story waiting for you... 🎁"
+
+};
+
+
+function selectOption(element, type) {
+
+    const responseBox = document.getElementById("responseBox");
+    const seeMoreBtn = document.getElementById("seeMoreBtn");
+
+    responseBox.innerText = responses[type];
+
+    responseBox.style.display = "block";
+
+    seeMoreBtn.style.display = "inline-block";
+
+}
+
+
+/* START STORY */
+
+function startStory() {
+
+    changeScreen("screen3", "story1");
+
+}
+
+
+/* STORY NAVIGATION */
+
+function nextStory(currentId, nextId) {
+
+    changeScreen(currentId, nextId);
+
+}
+
+
+/* RESTART */
+
+function restartExperience() {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById("screen1").classList.add("active");
+
+}
+
+</script>
+
+</body>
+</html>
